@@ -1,7 +1,7 @@
 // Форма додавання контактів. Це статична форма - не змінна (при відправці викликає ф-цію зміни state)
 
 import { Component } from "react";                     // для класів
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // import { ButtonsList, Button } from "./styled";
 
 
@@ -9,8 +9,9 @@ import { Component } from "react";                     // для класів
 export class ContactForm extends Component {       // для класів
     
     render() {
+        const { onContactCreate } = this.props;
         return (
-            <form onSubmit={this.props.onContactCreate}>
+            <form onSubmit={onContactCreate}>
                 <label>
                     Name
                         <input
@@ -37,3 +38,7 @@ export class ContactForm extends Component {       // для класів
         );
     }
 }
+
+ContactForm.propTypes = {
+    onContactCreate: PropTypes.func.isRequired,
+};

@@ -3,6 +3,7 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 import { Container, Title } from "./styled";
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -14,7 +15,7 @@ export class App extends Component {
       {id: 'id-1', name: 'Oles Honchar', number: '459-12-56'},
       {id: 'id-2', name: 'Hryhorii Skovoroda', number: '443-89-12'},
       {id: 'id-3', name: 'Pavlo Tychyna', number: '645-17-79'},
-      {id: 'id-4', name: 'Mykhailo Kotsiubynsky', number: '227-91-26'},
+      {id: 'id-4', name: 'Saint Nicholas', number: '227-91-26'},
     ],    
     filter: ''
   }
@@ -68,15 +69,20 @@ export class App extends Component {
 
 
   render() {
+    const { onContactCreate, handleFilter, getVisibleContacts, DeleteContact } = this;
     return (
         <Container>
           <Title>Phonebook</Title>
-          <ContactForm onContactCreate={this.onContactCreate} /> 
+          <ContactForm onContactCreate={onContactCreate} /> 
 
           <h2>Contacts</h2>
-          <Filter filter={this.state.filter} onChange={this.handleFilter} />
-          <ContactList contacts={this.getVisibleContacts()} onDeleteContact={this.DeleteContact} /> {/* якщо фільтр пустий, то передасться [] контактів зі state, якщо повний, то [] зі співпадіннями */}
+          <Filter filter={this.state.filter} onChange={handleFilter} />
+          <ContactList contacts={getVisibleContacts()} onDeleteContact={DeleteContact} /> {/* якщо фільтр пустий, то передасться [] контактів зі state, якщо повний, то [] зі співпадіннями */}
         </Container>
     );
   }
 } 
+
+App.propTypes = {
+    contactID: PropTypes.string,
+};
