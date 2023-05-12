@@ -1,26 +1,16 @@
-// форма додавання контактів
+// Форма додавання контактів. Це статична форма - не змінна (при відправці викликає ф-цію зміни state)
 
 import { Component } from "react";                     // для класів
 // import PropTypes from 'prop-types';
 // import { ButtonsList, Button } from "./styled";
 
 
-// Кожен контакт - {name та id}
 
 export class ContactForm extends Component {       // для класів
     
-    handleSubmit = (event)=> {
-        event.preventDefault();
-        const name = event.target.elements.name.value; // name - це <input>
-        console.log(name);
-        const number = event.target.elements.number.value;
-        console.log(number);
-        this.props.onContactCreate(name, number);
-    }
-
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.props.onContactCreate}>
                 <label>
                     Name
                         <input

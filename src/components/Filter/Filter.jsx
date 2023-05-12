@@ -1,38 +1,28 @@
-// фільтр пошуку
+// Фільтр пошуку у списку контактів
 
 import { Component } from "react";                     // для класів
+// import { ContactList } from "../ContactList/ContactList";
 // import PropTypes from 'prop-types';
-import { Contact } from "./styled";
+// import { Contact } from "./styled";
 
 
 export class Filter extends Component {       // для класів
 
-    // handleChange = (event) => {
-        // this.setState({
-        //     []: event.target.elements.name.value,
-        // })
-    // }
-
     render() {
-        const { contacts, filter } = this.props  // об'єкт
-
+        const { filter, onChange } = this.props  // масив об'єктів
         return (
-            <>
-                <input 
-                    type="name"
-                    name="filter"
-                    required
-                    // onChange={this.handleChange}
-                />
-                <ul>
-                    {contacts.filter(({ name }) => 
-                        name.toLowerCase().includes(filter.toLowerCase())
-                        ).map(({id, name, number}) => (
-                            <Contact key={id}>{name} {number}</Contact>
-                        ))
-                    }
-                </ul>
-            </>
+            <form>
+                <label>
+                    Find contacts by name
+                    <input 
+                        type="name"
+                        name="filter"
+                        value={filter}
+                        required
+                        onChange={ onChange }
+                    />
+                </label>
+            </form>
         );
     }
 }
