@@ -13,28 +13,25 @@ export class App extends Component {
   state = {
     contacts: [
       {id: 'id-1', name: 'Oles Honchar', number: '459-12-56'},
-      {id: 'id-2', name: 'Hryhorii Skovoroda', number: '443-89-12'},
-      {id: 'id-3', name: 'Pavlo Tychyna', number: '645-17-79'},
+      {id: 'id-2', name: 'Plumber Stephan', number: '443-89-12'},
+      {id: 'id-3', name: 'Chris Martin', number: '645-17-79'},
       {id: 'id-4', name: 'Saint Nicholas', number: '227-91-26'},
     ],    
     filter: ''
   }
 
 
-  // Функція при відправці форми змінює state (зшиває масив контактів з новим об'єктом 1го контакта)
+  // Функція викликається при відправці форми - змінює state (зшиває масив контактів з новим об'єктом 1го контакта)
   // Якщо введене ім'я вже є в state контактах, то спливе відповідне повідомлення і об'єкт з цим ім'ям не додасться до state 
-  onContactCreate = (event) => {
-    event.preventDefault();
-    const name = event.target.elements.name.value; // name - це <input> з ім'ям
-    const number = event.target.elements.number.value; // number - це <input> з телефоном
-    const contactObject = {id: nanoid(), name, number};  // короткі властивості (name: name, number: number)
+  onContactCreate = (userInput) => {  // приймає об'єкт 1го контакта
+    const contactObject = {id: nanoid(), ...userInput};  // короткі властивості (name: name, number: number)
     
     const nameClone = this.state.contacts.find((contact) => ( // вертає об'єкт з ім'ям, що повторюється
-      contact.name.toLowerCase() === name.toLowerCase()
+      contact.name.toLowerCase() === userInput.name.toLowerCase()
     ));
 
     if(nameClone) {
-      Notify.failure(`${name} is already in contacts`); 
+      Notify.failure(`${userInput.name} is already in contacts`); 
       return;
     }
 
@@ -84,5 +81,9 @@ export class App extends Component {
 } 
 
 App.propTypes = {
+    userInput: PropTypes.shape ({  // об'єкт
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }),
     contactID: PropTypes.string,
 };
