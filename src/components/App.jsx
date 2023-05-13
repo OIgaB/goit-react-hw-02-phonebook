@@ -12,10 +12,10 @@ export class App extends Component {
 
   state = {
     contacts: [
-      {id: 'id-1', name: 'Oles Honchar', number: '459-12-56'},
-      {id: 'id-2', name: 'Plumber Stephan', number: '443-89-12'},
+      {id: 'id-1', name: 'Mykhailo Kotsiubynsky', number: '459-12-56'},
+      {id: 'id-2', name: 'Saint Nicholas', number: '443-89-12'},
       {id: 'id-3', name: 'Chris Martin', number: '645-17-79'},
-      {id: 'id-4', name: 'Saint Nicholas', number: '227-91-26'},
+      {id: 'id-4', name: 'Plumber Stephan', number: '227-91-26'},
     ],    
     filter: ''
   }
