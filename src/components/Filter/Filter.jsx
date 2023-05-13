@@ -2,7 +2,8 @@
 
 // import { Component } from "react";                     // для класів
 import PropTypes from 'prop-types';
-// import { Contact } from "./styled";
+import { Input } from '../ContactForm/styled';
+import { Container } from "./styled";
 
 
 // export class Filter extends Component {       // для класів
@@ -10,18 +11,19 @@ import PropTypes from 'prop-types';
 
 export const Filter = ({ filter, onChange }) => { 
     return (
-        <form>
+        <Container>
             <label>
                 Find contacts by name
-                <input 
+                <Input 
                     type="name"
                     name="filter"
                     value={filter}
                     required
+                    placeholder="Oles"
                     onChange={onChange}
                 />
             </label>
-        </form>
+        </Container>
     );
 }
 

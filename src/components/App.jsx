@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
-import { Container, Title } from "./styled";
+import { Container, Title, SubTitle, AlertMessage } from "./styled";
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -19,7 +19,6 @@ export class App extends Component {
     ],    
     filter: ''
   }
-
 
   // Функція викликається при відправці форми - змінює state (зшиває масив контактів з новим об'єктом 1го контакта)
   // Якщо введене ім'я вже є в state контактах, то спливе відповідне повідомлення і об'єкт з цим ім'ям не додасться до state 
@@ -55,6 +54,7 @@ export class App extends Component {
     return contacts.filter(({ name }) => 
       name.toLowerCase().includes(filter.toLowerCase()) 
     );
+    
   }
   
   // Функція видалення 1го контакта по id (filter створює новий масив без об'єкта з заданим id)
@@ -72,9 +72,13 @@ export class App extends Component {
           <Title>Phonebook</Title>
           <ContactForm onContactCreate={onContactCreate} /> 
 
-          <h2>Contacts</h2>
+          <SubTitle>Contacts</SubTitle>
           <Filter filter={this.state.filter} onChange={handleFilter} />
-          <ContactList contacts={getVisibleContacts()} onDeleteContact={DeleteContact} /> {/* якщо фільтр пустий, то передасться [] контактів зі state, якщо повний, то [] зі співпадіннями */}
+          {getVisibleContacts().length ? (
+          <ContactList contacts={getVisibleContacts()} onDeleteContact={DeleteContact} /> // якщо фільтр пустий, то передасться [] контактів зі state, якщо повний, то [] зі співпадіннями 
+          ) : (
+            <AlertMessage>There is no contact matching your request.</AlertMessage>
+          )}
         </Container>
     );
   }

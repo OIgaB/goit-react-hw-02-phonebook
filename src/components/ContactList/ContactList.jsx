@@ -2,7 +2,7 @@
 
 import { Component } from "react";                     // для класів
 import PropTypes from 'prop-types';
-import { ListContainer, Contact } from "./styled";
+import { ListContainer, Contact, Name, Number, Wrapper, Button } from "./styled";
 
 
 export class ContactList extends Component {       // для класів
@@ -12,15 +12,14 @@ export class ContactList extends Component {       // для класів
             <ListContainer>                                    {/* <ul> */} 
                 {contacts.map(({ id, name, number }) => (
                     <Contact key={id}>                         {/* <li> */} 
-                        <p>{name}</p>
-                        <span>{number}</span>
-                        <button type='button' onClick={() => onDeleteContact(id)}>Delete</button>
+                        <Wrapper>
+                        <Name>{name}</Name>
+                        <Number>{number}</Number>
+                        </Wrapper>
+                        <Button type='button' onClick={() => onDeleteContact(id)}>Delete</Button>
                     </Contact>      
                 ))}
             </ListContainer>
-
-            // <Container>
-            // </Container>
         );
     }
 }

@@ -2,7 +2,7 @@
 
 import { Component } from "react";                     // для класів
 import PropTypes from 'prop-types';
-import { Form, Label, Input } from "./styled";
+import { Form, Input, Button } from "./styled";
 
 
 export class ContactForm extends Component {       // для класів
@@ -34,8 +34,8 @@ export class ContactForm extends Component {       // для класів
     render() {
         const { handleFormSubmit, handleChange } = this;
         return (
-            <Form onSubmit={handleFormSubmit}>
-                <Label>
+            <Form onSubmit={handleFormSubmit} autoComplete="off">
+                <label>
                     Name
                         <Input
                             type="text"
@@ -47,8 +47,8 @@ export class ContactForm extends Component {       // для класів
                             required
                             onChange={handleChange}
                         />
-                </Label>
-                <Label>
+                </label>
+                <label>
                     Number
                     <Input
                         type="tel"
@@ -60,8 +60,8 @@ export class ContactForm extends Component {       // для класів
                         placeholder="459-12-56"
                         onChange={handleChange}
                     />
-                </Label>
-                <button>Add contact</button>
+                </label>
+                <Button>Add contact</Button>
             </Form>
         );
     }

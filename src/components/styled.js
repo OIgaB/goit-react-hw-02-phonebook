@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     margin: 30px auto;
-    /* width: 500px; */
     padding: 50px;
     text-align: center;
     background: radial-gradient(ellipse at center, #443501 0%,#000000 100%);
@@ -34,4 +33,17 @@ export const Title = styled.h1`
             5px 5px 10px rgba(0, 0, 0, 0.4),
             -5px -5px 10px rgba(0, 0, 0, 0.4);
     }
+`; 
+
+export const SubTitle = styled.h2`
+    color: rgb(243,229,171);
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+`; 
+
+export const AlertMessage = styled.p`
+    color: rgb(243,229,171);
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-style: italic;
 `; 
