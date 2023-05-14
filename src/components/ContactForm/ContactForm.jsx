@@ -20,19 +20,15 @@ export class ContactForm extends Component {       // для класів
     handleFormSubmit = (event) => {
         event.preventDefault();
         this.props.onContactCreate(this.state); // передає об'єкт 1го контакта {name: _, number: _} до App.jsx 
-        this.reset();
-    }
-
-    reset = () => {
         this.setState({ 
             name: '',
             number: '',
-        });         
-    };
-
+        });  
+    }
 
     render() {
         const { handleFormSubmit, handleChange } = this;
+        const { name, number } = this.state;
         return (
             <Form onSubmit={handleFormSubmit} autoComplete="off">
                 <label>
@@ -40,8 +36,8 @@ export class ContactForm extends Component {       // для класів
                         <Input
                             type="text"
                             name="name"
-                            value={this.state.name} // контрольований input (без цього reset не зробиш)
-                            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                            value={name} // контрольований input (без цього reset не зробиш)
+                            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                             placeholder="Oles Honchar"
                             required
@@ -53,8 +49,8 @@ export class ContactForm extends Component {       // для класів
                     <Input
                         type="tel"
                         name="number"
-                        value={this.state.number} // контрольований input (без цього reset не зробиш)
-                        // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                        value={number} // контрольований input (без цього reset не зробиш)
+                        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                         required
                         placeholder="459-12-56"

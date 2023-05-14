@@ -3,7 +3,6 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 import { Container, Title, SubTitle, AlertMessage } from "./styled";
-import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -74,20 +73,14 @@ export class App extends Component {
 
           <SubTitle>Contacts</SubTitle>
           <Filter filter={this.state.filter} onChange={handleFilter} />
+
           {getVisibleContacts().length ? (
           <ContactList contacts={getVisibleContacts()} onDeleteContact={DeleteContact} /> // якщо фільтр пустий, то передасться [] контактів зі state, якщо повний, то [] зі співпадіннями 
           ) : (
             <AlertMessage>There is no contact matching your request.</AlertMessage>
           )}
+          
         </Container>
     );
   }
 } 
-
-App.propTypes = {
-    userInput: PropTypes.shape ({  // об'єкт
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }),
-    contactID: PropTypes.string,
-};
