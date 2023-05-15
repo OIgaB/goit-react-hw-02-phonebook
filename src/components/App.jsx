@@ -57,7 +57,7 @@ export class App extends Component {
   }
   
   // Функція видалення 1го контакта по id (filter створює новий масив без об'єкта з заданим id)
-  DeleteContact = (contactID) => {
+  deleteContact = (contactID) => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactID),
     }));
@@ -65,7 +65,7 @@ export class App extends Component {
 
 
   render() {
-    const { onContactCreate, handleFilter, getVisibleContacts, DeleteContact } = this;
+    const { onContactCreate, handleFilter, getVisibleContacts, deleteContact } = this;
     return (
         <Container>
           <Title>Phonebook</Title>
@@ -73,12 +73,15 @@ export class App extends Component {
 
           <SubTitle>Contacts</SubTitle>
           <Filter filter={this.state.filter} onChange={handleFilter} />
-
-          {getVisibleContacts().length ? (
+          
+          {/* {getVisibleContacts().length ? (       рендер по умові
           <ContactList contacts={getVisibleContacts()} onDeleteContact={DeleteContact} /> // якщо фільтр пустий, то передасться [] контактів зі state, якщо повний, то [] зі співпадіннями 
           ) : (
             <AlertMessage>There is no contact matching your request.</AlertMessage>
-          )}
+          )} */}
+
+          {getVisibleContacts().length !==0 && <ContactList contacts={getVisibleContacts()} onDeleteContact={deleteContact} />}  {/* якщо фільтр пустий, то передасться [] контактів зі state, якщо повний, то [] зі співпадіннями  */}
+          {getVisibleContacts().length ===0 && <AlertMessage>There is no contact matching your request.</AlertMessage>}
           
         </Container>
     );
